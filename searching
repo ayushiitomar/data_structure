@@ -1,0 +1,422 @@
+PROGRAM 01
+program for Linear Search
+//AYUSHI TOMAR
+//Admission no. 2021b0101022
+#include <iostream>
+using namespace std;
+int linearSearch(int arr[],int n, int key)
+{
+    for(int i = 0 ;i<n;i++){
+        if(arr[i]==key){
+        return i;
+        }
+        
+        
+
+    }
+    return -1;
+
+}
+int main()
+{
+    int arr[]={2,5,6,7};
+    int n = 4;
+    int key = 5;
+    int find =linearSearch(arr,n,key);
+    cout<<find;
+    return 0 ;
+}
+
+PROGRAM 02
+PROGRAM FOR BINARY SEARCH
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+
+
+ int searchiterative(int arr[] , int l , int h , int ele){
+	        while(l<=h){
+				  int mid = (l+h)/2;
+				   if(arr[mid] == ele) return mid;
+				   if(arr[mid] < ele) l = mid+1;
+				   else if(arr[mid] > ele) h = mid-1;
+			}
+			return -1;
+ }
+
+ int searchrecursive(int arr[] , int l , int h , int ele){
+	if(l>h) return -1;
+	  int mid = (l+h)/2;
+	  if(arr[mid] == ele) return mid;
+	  else if(arr[mid]>ele) return  searchrecursive(arr,l , mid-1 , ele);
+	  else if(arr[mid]<ele) return searchrecursive(arr,mid+1,h,ele);
+	  return -1;
+ }
+
+int main()
+{
+      int n;
+	    cout
+		<<"enter the total number of elements in the array\n";
+		  cin>>n;
+            int arr[n];
+		  cout<<"enter the elements of the array\n";
+		    for(int i=0;i<n;i++) cin>>arr[i];
+	
+	int t;
+	  cout<<"enter the total number of elements to be searched\n";
+	  cin>>t;
+	    while(t--){
+               int ele;
+			     cout<<"enter the element to be searched\n";
+				   cin>>ele;
+               int opt;
+			     cout<<"choose any function\n1.Recursive binary search\n2.Itretive binary search\n";
+				   cin>>opt;
+				    int pos;
+				   switch(opt){
+					   case 1:
+					    pos =  searchrecursive(arr ,0 , n , ele);
+					    if(pos == -1) cout<<"element not found\n";
+						else  cout<<"element found at the index "<<pos<<"\n";
+						break;
+
+						case 2:
+						     pos =  searchiterative(arr ,0 , n , ele);
+					    if(pos == -1) cout<<"element not found\n";
+						else  cout<<"element found at the index "<<pos<<"\n";
+						break;
+
+						default :
+						   cout<<"Invalid option chosen\n";
+						   break;
+					      
+				   }
+
+		}
+	
+
+
+
+return 0;
+}
+
+PROGRAM 03
+Program for Ternary search
+include<bits/stdc++.h>
+typedef long long int ll;
+using namespace std;
+
+
+class searrch{
+      public:
+       int serBinIt(int arr[],int x,int lo,int hi)
+       {
+           int mid;
+             while(lo<=hi)
+             {
+                  mid = lo + (hi-lo)/2;
+
+                   if(arr[mid] == x) return mid;
+                   else if(arr[mid] > x) hi = mid-1;
+                   else lo = mid+1;
+             }
+             return -1;
+       }
+       int serBinRec(int arr[],int x,int lo,int hi)
+       {
+              if(lo>hi) return -1;
+              int mid = lo + (hi-lo)/2;
+
+              if(arr[mid] == x) return mid;
+              else if(arr[mid] > x) return serBinRec(arr,x,lo,mid-1);
+                 return serBinRec(arr,x,mid+1,hi);
+       }
+         int serLin(int arr[],int x,int lo,int hi)
+         {
+              for(int i=lo;i<=hi;i++)
+              {
+                 if(arr[i] == x) return i;
+              }
+              return -1;
+         }
+
+         int terSerRec(int arr[],int x,int l,int h)
+         {
+              if(l>h) return -1;
+
+                 int mid1 = l + (h - l) / 3;
+                 int mid2 = h - (h - l) / 3;
+
+                  if(arr[mid1] == x) return mid1;
+                  else if(arr[mid2] == x) return mid2;
+
+                  else if(arr[mid1]>x) return terSerRec(arr,x,l,mid1-1);
+                  else if(arr[mid2]<x) return terSerRec(arr,x,mid2+1,h);
+                  else return terSerRec(arr,x,mid1+1,mid2-1);
+         }
+
+         int terSerIt(int arr[],int x,int l,int h)
+         {
+                 while(l<=h)
+                 { 
+                    int mid1 = l + (h - l) / 3;
+                     int mid2 = h - (h - l) / 3;
+                       
+                 if(arr[mid1] == x) return mid1;
+                  else if(arr[mid2] == x) return mid2;
+
+                  else if(arr[mid1]>x) h = mid1-1;
+                  else if(arr[mid2]<x) l = mid2+1;
+                  else l = mid1+1,h = mid2-1;
+                 }
+                 return -1;
+         }
+
+};
+int main()
+{
+    #ifndef ONLINE_JUDGE
+    freopen("i_p.txt", "r", stdin);
+    freopen("o_p.txt", "w", stdout);
+    #endif
+    int n; cin>>n;
+        int arr[n];
+
+        for(int i=0;i<n;i++) cin>>arr[i];
+     int x; cin>>x;
+        searrch a;
+        cout<<a.serLin(arr,x,0,n-1)<<"\n";
+
+        sort(arr,arr+n);
+        cout<<a.serBinIt(arr,x,0,n-1)<<"\n";
+
+         cout<<a.serBinRec(arr,x,0,n-1)<<"\n";
+
+         cout<<a.terSerRec(arr,x,0,n-1)<<"\n";
+
+         cout<<a.terSerIt(arr,x,0,n-1)<<"\n";
+return 0;
+}
+
+PROGRAM 04
+Program for Jump Search
+//AYUSHI TOMAR
+//Admission no. 2021b0101022
+#include <iostream>
+using namespace std;
+int indexseqsearch(int A[] , int n , int key)
+{
+    int B[20];
+    int i =0;
+    int step = 0;
+    for( i = 0 ;i < n ;i++)
+    {
+        if (step<n){
+            A[i] = step;
+            step=+4;
+        }
+        else 
+        break;  
+    
+    }
+  if ( A[i-1]!=n-1)
+  {
+    A[i] = n-1;
+  }
+  while(i<s&&key>A[i])
+  {
+  i++;
+  if(i<s)
+  {
+    if(B[A[i]]==key){
+        return A[i];
+    }
+    else
+    int end = A[i] - 1;
+    int start = A[i-1]+1;
+    for(int j = start ; j<end; j++)
+    {
+        if(A[j]==key)
+        return j ;
+    }
+  }
+  }
+
+
+}
+
+
+
+int main()
+{
+ int A[20]={2,3,4,5,6,7,8,9,10,12,14,15,16,17,18,19};
+int n = 16;
+int key = 9;
+indexseqsearch(A,n,key);
+return 0 ;
+}
+    
+PROGRAM O5
+Program for Interpolation Search
+#include<bits/stdc++.h>
+typedef long long int ll;
+using namespace std;
+
+
+/*
+   INTERPOLATION SEARCH
+   1. sorted
+   2. uniform (gap between adjecent  elements should be same)
+   3.
+      ind = lo + (3-a[lo])/(a[hi]-a[lo])*(hi-lo);
+   */
+
+int interpolate(int arr[], int lo, int hi, int x)
+{
+    int pos;
+ 
+    
+    if (lo <= hi && x >= arr[lo] && x <= arr[hi]) {
+ 
+        
+        pos = lo
+              + (((double)(hi - lo) / (arr[hi] - arr[lo]))
+                 * (x - arr[lo]));
+ 
+        // found the x
+        if (arr[pos] == x)
+            return pos;
+ 
+        // binary search
+        if (arr[pos] < x)
+            return interpolate(arr, pos + 1, hi, x);
+        if (arr[pos] > x)
+            return interpolate(arr, lo, pos - 1, x);
+    }
+    return -1;
+}
+int main()
+{
+     int n;
+      cout<<"enter total number of elements in the array\n"; cin>>n;
+      int arr[n];
+      cout<<"enter the elements of the array\n";for(auto &it:arr) cin>>it;
+        int x; cout<<"enter the element to searched\n"; cin>>x;
+      
+       
+     int pos = interpolate(arr,0,n-1,x);
+     cout<<pos<<"\n";
+    
+
+
+
+return 0;
+}
+
+PROGRAM 06
+Program for Exponential search
+
+#include<bits/stdc++.h>
+typedef long long int ll;
+using namespace std;
+
+int serBin(int arr[],int lo,int hi,int x)
+{
+       while(lo<=hi)
+       {
+            int mid = (lo+hi)/2;
+            if(arr[mid] == x) return mid;
+            else if(arr[mid]<x) lo = mid+1;
+            else hi = mid-1;
+       }
+       return -1;
+}
+
+int expoSearch(int arr[],int n,int x)
+{
+      if(arr[0] == x) return 0;
+
+      int i= 1;
+      while(i<n and arr[i]<=x)
+      {
+        i*=2;
+      }
+      return serBin(arr,i/2,min(i,n-1),x);
+}
+
+
+int main()
+{
+      cout<<"enter the size of thr array:\n";
+      int n; cin>>n;
+      int arr[n];
+      cout<<"enter the elements of the array\n";
+       for(auto &it:arr)cin>>it;
+       int x; cout<<"enter the element to be searched:\n";cin>>x;
+         int ind = expoSearch(arr,n,x);
+         cout<<ind<<"\n";
+
+    
+
+
+
+return 0;
+}
+
+
+PROGRAM 07
+
+
+// C program for Indexed Sequential Search 
+#include  
+#include  
+
+void indexedSequentialSearch(int arr[], int n, int k) 
+{ 
+	int elements[20], indices[20], temp, i; 
+	int j = 0, ind = 0, start, end; 
+	for (i = 0; i < n; i += 3) { 
+
+		// Storing element 
+		elements[ind] = arr[i]; 
+
+		// Storing the index 
+		indices[ind] = i; 
+		ind++; 
+	} 
+	if (k < elements[0]) { 
+		printf("Not found"); 
+		exit(0); 
+	} 
+	else { 
+		for (i = 1; i <= ind; i++) 
+			if (k < elements[i]) { 
+				start = indices[i - 1]; 
+				end = indices[i]; 
+				break; 
+			} 
+	} 
+	for (i = start; i <= end; i++) { 
+		if (k == arr[i]) { 
+			j = 1; 
+			break; 
+		} 
+	} 
+	if (j == 1) 
+		printf("Found at index %d", i); 
+	else
+		printf("Not found"); 
+} 
+
+// Driver code 
+void main() 
+{ 
+
+	int arr[] = { 6, 7, 8, 9, 10 }; 
+	int n = sizeof(arr) / sizeof(arr[0]); 
+
+	// Element to search 
+	int k = 8; 
+	indexedSequentialSearch(arr, n, k); 
+}
