@@ -1,0 +1,236 @@
+PROGRAM O1
+Program for finding factorial of a given number using recursion
+//AYUSHI TOMAR
+// Admission no. 2021b0101022
+#include <iostream>
+using namespace std ;
+int fact(int n)
+{
+      int f = 1;
+    for(int i = 1 ; i<=n ; i++)
+    {
+    
+        f= f*i;
+    
+    }
+    return f;
+}
+int main()
+{
+    int n;
+    cin>>n;
+   int s= fact(n);
+   cout<<s;
+}
+
+PROGRAM 02
+Program for Computing A raised to power n using Recursion
+//AYUSHI TOMAR
+//2021B0101022
+#include<bits/stdc++.h>
+ typedef long long int ll;
+ using namespace std;
+ 
+long long power(int a, int n)
+{
+      int res = 1;
+        while(n>0)
+        {
+              if(n&1) res*=a;
+               a*=a;
+            n>=1;
+        }
+        return res;
+
+
+        // if(n==0) return 1;
+        // return n*power(a,n-1);
+
+}
+
+ int main()
+ {
+     int a ,n;
+       cin>>a>>n;
+    
+ 
+ 
+ 
+ return 0;
+ }
+ 
+ PROGRAM 03
+ Program for finding nth Fibonacci number using Recursion and improving its run time to save stack operations
+ //AYUSHI TOMAR
+//2021B0101022
+#include <iostream>
+using namespace std;
+int fibo(int n)
+{
+    if(n==1)
+    return 0 ;
+    else
+     if (n==2)
+     return 1;
+     else 
+     return fibo(n-1) + fibo(n-2);
+}
+int main()
+{
+    for(int i =  1 ; i<=10 ; i++)
+    {
+        int s = fibo(i);
+        cout<<s<<i;
+    }
+    return 0 ;
+}
+
+PROGRAM 04
+Program for finding GCD of two numbers using Recursion
+//AYUSHI TOMAR
+//2021B0101022
+#include <iostream>
+using namespace std;
+int gcd(int a , int b){
+    if(a==b){
+        return a;
+    }
+   else 
+    if(a>b)
+    return gcd(a-b,b);
+    else
+      return gcd(a);
+}
+int main()
+{
+   int a=36 , b=24;
+   int s = gcd(a,b);
+   cout<<s;
+   return 0 ;
+}
+
+PROGRAM 05
+Binary Search with Recursion
+#include <iostream>
+using namespace std;
+int BS(int A[] , int s ,int e,int key)
+{
+    
+        int mid = (s+e)/2;
+        if(A[mid]==key)
+        return mid;
+        else
+        if(key<A[mid])
+         return BS(A,s,mid-1,e);
+        else
+         return BS(A,mid+1,e,key);
+}
+int main()
+{
+    int A[10] = {2,3,4,5,6,7};
+   cout<<BS(A,0,5,6);
+
+}
+
+PROGRAM 06
+Program for Towers of Hanoi for n disk (user defined)
+//AYUSHI TOMAR
+//2021B0101022
+#include <iostream>
+using namespace std;
+int TOH(int n , char s , char m ,char d)
+{
+    if(n==1)
+    {
+        cout<<s<<d<<endl;
+    }
+    else
+    {
+        TOH(n-1,s,d,m);
+        cout<<s<<d<<endl;
+        TOH(n-1,m,s,d);
+    }
+}
+int main()
+{
+  TOH(3,'S','M','D');
+  return 0 ;
+}
+
+PROGRAM 07
+Program to reverse the given number using Recursion
+//AYUSHI TOMAR
+//2021B0101022
+#include<bits/stdc++.h>
+typedef long long int ll;
+using namespace std;
+
+
+int rev(int n,int ans =0)
+{
+        return n==0 ? ans : rev(n/10 , ans*10 + n%10);
+}
+int main()
+{
+     int n;
+       cin>>n;
+
+      cout<<rev(n);
+
+
+
+return 0;
+}
+
+PROGRAM 08
+Finding sum of the digits of the number
+#include<bits/stdc++.h>
+typedef long long int ll;
+using namespace std;
+
+int sumOfdg(int n , int ans = 0)
+{
+      return n==0 ? ans : sumOfdg(n/10 , ans+n%10);
+}
+
+
+int main()
+{
+     int n;
+      cin>>n;
+
+    
+    cout<<sumOfdg(n);
+
+
+return 0;
+}
+
+PROGRAM 09
+To check if the given string is a palindrome using Recursion
+
+//AYUSHI TOMAR
+//2021B0101022
+#include<bits/stdc++.h>
+typedef long long int ll;
+using namespace std;
+
+bool is_palindrome(string s , int lo , int hi)
+{
+      if(s[lo] != s[hi]) return false;
+      if(lo<hi)
+      {
+          is_palindrome(s,lo+1,hi-1);
+      }
+      return true;    
+}
+int main()
+{
+
+   string s;
+     cin>>s;
+     int n = s.length();
+      if(is_palindrome(s,0,n-1)) cout<<"YES\n";
+      else cout<<"No\n";
+return 0;
+}
