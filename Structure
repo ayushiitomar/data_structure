@@ -1,0 +1,468 @@
+PROGRAM -01
+Get the input of student: Name, Roll No, Marks in 6 subjects in 12th. Find if the student is eligible for admission in Delhi University. A student is eligible for DU if he has scored 95 % or more in Best 4.
+#include <iostream>
+using namespace std;
+
+    struct student //user define data type
+    {
+        int roll_no ;  //properties of data type
+        char section ;
+        float percentage;
+        int mob_no;
+
+    };
+int main()
+{
+    struct student s = {45,'B',87,6482};   //initializing structure
+
+    cout<<s.roll_no<<endl;
+    cout<<s.section<<endl;
+    cout<<s.percentage<<endl;
+    cout<<s.mob_no<<endl;
+    return 0;
+}
+
+
+PROGRAM-02
+Write a program to store and print the roll no., name, age and marks of a student using structures. Write a program to store the roll no. (starting from 1), name and age of 5 students and then print the details of the student with roll no. 1.
+
+#include <iostream>
+using namespace std;
+
+    struct student
+    {
+        int roll_no ;
+        char section ;
+        float percentage;
+        int mob_no;
+
+    };
+int main()
+{
+    struct student s[5];
+    for(int i = 0 ; i<5 ; i++){
+    cin>>s[i].roll_no;
+    cin>>s[i].section;
+    cin>>s[i].percentage;
+    cin>>s[i].mob_no;
+    }
+    for(int i = 0 ; i<5 ; i++){
+    cout<<s[i].roll_no<<endl;
+    fflush(stdin);
+    cout<<s[i].section<<endl;
+    cout<<s[i].percentage<<endl;
+    cout<<s[i].mob_no<<endl;
+    }
+    return 0;
+}
+
+
+PROGRAM -03
+Write a program to store and print the roll no., name, age, address and marks of 15 students using structure.
+#include <iostream>
+using namespace std;
+struct address
+{
+    int houseno;
+    int blockno;
+    char city[100];
+    char state[100];
+    
+};
+void printadd(struct address add[5])
+{
+ for(int i = 0 ;i < 5 ; i++)
+    {
+        cout<<add[i].houseno;
+        cout<<add[i].blockno;
+        cout<<add[i].city;
+        cout<<add[i].state;
+    }
+}
+int main()
+{
+    struct address add[5];
+    for(int i = 0 ;i < 5 ; i++)
+    {
+        cin>>add[i].houseno;
+        cin>>add[i].blockno;
+        cin>>add[i].city;
+        cin>>add[i].state;
+    }
+   printadd(add);
+
+}
+
+PROGRAM-04
+4. Write a program to add two distances in inch-feet using structure. The values of the distances is to be taken from the user.
+#include <iostream>
+using namespace std;
+struct height ;
+{
+    int inch ;
+    int feet ;
+
+};
+int main()
+{
+    struct height h1 = {11,13};
+    struct height h2 = {7,8};
+    struct height h;
+    h.inch=(h1.inch+h2.inch)%12;
+    int x =(h1.inch + h2.inch) / 12;
+    h.feet =(h1.feet + h2.feet + x);
+    cout<<h.feet<<endl;
+    cout<<h.inch<<endl;
+  return 0;
+
+}
+
+PROGRAM-05
+
+5. Write a program to add two complex numbers using structure. The values of the complex number is to be taken from the user.
+#include <iostream>
+using namespace std;
+struct complex
+
+{
+    int real;
+    int img;
+};
+int main()
+{
+    struct complex c1={2,3};
+    struct complex c2={4,5};
+    struct complex sum={0};
+
+
+    sum.real = c1.real + c2.real;
+    sum.img = c1.img + c2.img;
+    cout<<sum.real<<" "<<sum.img;
+}
+
+
+PROGRAM-06
+6. Write a program to add two time in hour, minute and second using structure. The values of the time is to be taken from the user.
+#include <iostream>
+using namespace std;
+struct time
+{
+    int hours;
+    int min;
+    int sec;
+};
+int main()
+{
+    struct time t1 = {2,30,60};
+    struct time t2 = {3,45,80};
+    struct time t ;
+    t.hours = t1.hours + t2.hours ;
+    t.min =   t1.min   + t2.min  ;
+    t.sec =   t1.sec   + t2.sec  ;
+    cout<<t.hours<<" "<<t.min<<" "<<t.sec;
+
+} 
+
+PROGRAM-07
+7. Enter the marks of 5 students in Chemistry, Mathematics and Physics (each out of 100) using a structure named Marks having elements roll no., name, chem_marks, maths_marks and phy_marks and then display the percentage of each student.
+#include <iostream>
+using namespace std;
+struct student
+{
+    int chem;
+    int math;
+    int phy;
+};
+int main()
+{
+    struct student s[5];
+    for(int i = 0 ; i<5 ; i++)
+    {
+        cin>>s[i].chem;
+        cin>>s[i].math;
+        cin>>s[i].phy;
+    }
+}
+
+PROGRAM-08
+8. Write a program to add, subtract and multiply two complex numbers using structures to function.
+#include <iostream>
+using namespace std;
+struct complex
+
+{
+    int real;
+    int img;
+};
+int main()
+{
+    struct complex c1={2,3};
+    struct complex c2={4,5};
+    struct complex sum={0};
+    struct complex sub;
+    struct complex mul;
+
+
+    sum.real = c1.real + c2.real;
+    sum.img = c1.img + c2.img;
+    cout<<sum.real<<" "<<sum.img<<endl;
+    sub.real = c1.real - c2.real;
+    sub.img = c1.img - c2.img;
+    cout<<sub.real<<" "<<sub.img<<endl;
+    mul.real = c1.real * c2.real;
+    mul.img = c1.img * c2.img;
+    cout<<mul.real<<" "<<mul.img;
+}
+
+PROGRAM-09
+#include <iostream>
+using namespace std;
+struct student
+{
+int rollno;
+char name [100];
+int age;
+char address[100];
+};
+void even (struct student s[20])
+{
+    for(int i = 0 ; i < 1 ; i++){
+    if(s[i].rollno % 2 == 0)
+    {
+        cout<<s[i].name<<endl;
+    }
+    }
+}
+int main()
+{
+    struct student s[20];
+    for(int i = 0 ; i<1 ; i++ )
+    {
+        cin>>s[i].rollno;
+        cin>>s[i].name;
+        cin>>s[i].age;
+        cin>>s[i].address;
+
+    }
+     for(int i = 0 ; i<1 ; i++ )
+    {
+        cout<<s[i].rollno;
+        cout<<s[i].name;
+        if(s[i].age>11 && s[i].age<14){
+        cout<<s[i].age;
+        }
+
+        cout<<s[i].address;
+
+    }
+    even(s);
+}
+
+PROGRAM-10
+#include <iostream>
+using namespace std;
+
+    struct student
+{
+        long int accno;
+        char name[100] ;
+        float balance;
+       
+
+    };
+int main()
+{
+    struct student s[20];
+    for(int i = 0 ; i<20 ; i++){
+    cin>>s[i].accno;
+    cin>>s[i].name;
+    cin>>s[i].balance;
+   
+    }
+    for(int i = 0 ; i<5 ; i++){
+    cout<<s[i].accno<<endl;
+    fflush(stdin);
+    cout<<s[i].name<<endl;
+    cout<<s[i].balance<<endl;
+    }
+    return 0;
+}
+
+PROGRAM-11
+//11. Write a program to compare two dates entered by user. Make a structure named Date to store the elements day, month and year to store the dates. If the dates are equal, display "Dates are equal" otherwise display "Dates are not equal".
+  #include <iostream>
+using namespace std;
+struct Date
+{
+    int day ;
+    int month ;
+    int year;
+
+};
+int main()
+{
+    struct Date D1 = {11,3,2010};
+    struct Date D2 = {7,8,2010};
+    if(D1.day==D1.day && D1.month==D2.month && D1.year==D2.year)
+    cout<<"Dates are equal";
+    else
+    cout<<"Dates are not equal";
+  return 0;
+
+}     
+
+PROGRAM-12
+#include <iostream>
+using namespace std;
+#include <stdlib.h>
+#include <string.h>
+
+#define STACKSIZE 3
+#define TRUE 1
+#define FALSE 0
+struct stack
+{
+ char array[STACKSIZE];
+ int TOP;
+};
+struct stack S;
+int Initialize()
+{
+    S.TOP = -1;
+}
+int IsEmpty() 
+{
+if (S.TOP == -1)
+return TRUE;
+else
+return FALSE;
+}
+
+
+void PUSH( char x)
+{
+    if( S.TOP == STACKSIZE - 1)
+    {
+        printf("stack overflows");
+        exit(1);
+    }
+    S.TOP = S.TOP + 1;
+    S.array[S.TOP]=x;
+
+}
+
+char POP()
+{
+    char x;
+     if (IsEmpty())
+     {
+        printf("underflows");
+        exit(1);
+     }
+     x = S.array[S.TOP];
+     S.TOP = S.TOP - 1;
+     return x;
+     
+
+     
+}
+char stackTOP()
+{
+    char x = S.array[S.TOP];
+    return x;
+}
+int prcd(char a, char b)
+{
+    if(a=='^' || a=='*' || a=='/' || a=='%')
+    {
+        if(b == '^')
+        return FALSE;
+        else
+        return TRUE;
+    }
+    else{
+        if(b=='+' || b == '-')
+        return TRUE;
+        else 
+        return FALSE;
+    }
+}
+void infixtoprefix(char infix[])
+{
+    int i=0 , p=0;
+    char Prefix[20];
+    char x , symbol;
+     Initialize();
+   /* while(infix[i] != '\0')
+    {
+        for(int i = 0 ; i < n; i++ )
+        {
+            for(int j = n-1; j >=0 ;  j--)
+            {
+                int t = infix[i];
+                infix[i] = infix[j];
+                infix[j] = t;
+            }
+        }
+        
+    }*/
+    strrev(infix);
+   // cout<<infix;
+i=0;
+p=0;
+    while(infix[i]!='\0')
+    {
+          symbol = infix[i];
+          i++;
+          if(symbol>='a' && symbol <='z')
+        {
+            Prefix[p] = symbol;
+            p++;
+        }
+        else
+        {
+            while(!IsEmpty() && !prcd(symbol,stackTOP()))
+            {
+                x = POP();
+                Prefix[p] = x;
+                p++;
+
+            }
+            PUSH(symbol);
+
+        }
+    }
+        while(!IsEmpty())
+         {
+            x = POP();
+            Prefix[p] = x;
+            p++;
+         }
+
+    
+    /*     while(infix[i] != '\0')
+    {
+        for(int i = 0 ; i < n; i++ )
+        {
+            for(int j = n-1; j >=0 ;  j--)
+            {
+                int t = infix[i];
+                infix[i] = infix[j];
+                infix[j] = t;
+            }
+        }
+              cout<<Prefix;
+    }*/
+    Prefix[i]='\0';
+    strrev(Prefix);
+    cout<<Prefix;
+}
+int main()
+{
+  char infix[20];
+  cin>>infix;
+  infixtoprefix(infix);
+  
+  
+  return 0;
+}
