@@ -1,1 +1,1090 @@
 
+PROGRAM 01
+//AYUSHI TOMAR 
+//Admission no. 2021b0101022
+#include <stdio.h>
+void traversarray(int* arr ,int n){
+printf("Array: ");
+for(int i=0; i<n ;i++)
+{
+    printf("%d " , arr[i]);
+}
+printf("\n");
+}
+int main()
+{
+    int n;
+    int arr[] = {1,2,3,4,5,0,-5,-4,-3,-2,-1};
+     n = sizeof(arr)/ sizeof(arr[0]);
+traversarray(arr,n);
+return 0;
+}
+
+PROGRAM 02
+
+//AYUSHI TOMAR
+//Admission No : 2021b0101022
+
+
+#include<stdio.h>
+int main()
+{
+    int arr[20] = {0},n=10,pos,x;
+    for(int i=0;i<n;i++){
+        arr[i] = i+1;
+        printf("%d ",arr[i]);
+    }
+    printf("\n");
+   printf("enter a no. to be inserted:");
+   scanf("%d" , &x);
+   printf("position :");
+   scanf("%d",&pos);
+   n++;
+   for(int i=n-1; i>=pos;i--)
+   {
+    arr[i]=arr[i-1];
+   }
+   arr[pos-1] = x;
+   for(int i = 0 ;i<n;i++){
+    printf("%d ",arr[i]);
+   }
+return 0;
+
+}
+
+PROGRAM 03
+//AYUSHI TOMAR
+//ADMISSION NO. 2021b0101022
+#include <iostream>
+using namespace std;
+int insertionsort(int A[] , int n){
+    int x;
+    for(int i = 0;i<n-1;i++ ){
+        x = A[i];
+       int j=i-1;
+        while(A[j]>x)
+        {
+            A[j+1] = A[j];
+            j--;
+        }
+        A[j+1]=x;
+
+    }
+    for(int i = 0 ; i<n ; i++)
+    {
+        cout<<A[i];
+    }
+
+}
+int main()
+{
+    int A[10] = {2,3,4,6,7,8,5,1};
+    int n = 8;
+    insertionsort(A,n);
+    return 0 ;
+}
+
+PROGRAM 04
+
+
+//AYUSHI TOMAR
+//Admission No. 2021b0101022
+# include <stdio.h>
+int findElement(int arr[], int n, int key);
+int deleteElement(int arr[], int n, int key)
+{
+	int pos = findElement(arr, n, key);
+    if (pos == -1) {
+		printf("Element not found");
+		return n;
+	}
+    int i;
+	for (i = pos; i < n - 1; i++)
+     arr[i] = arr[i + 1];
+    return n - 1;
+}
+
+
+int findElement(int arr[], int n, int key)
+{
+int i;
+	for (i = 0; i < n; i++)
+		if (arr[i] == key)
+			return i;
+            return -1;
+}
+
+
+int main()
+{
+	int i;
+	int arr[] = { 10, 50, 30, 40, 20 };
+    int n = 5;
+	int key = 30;
+    printf("Array before deletion :");
+	for (i = 0; i < n; i++)
+		printf("%d ", arr[i]);
+
+	n = deleteElement(arr, n, key);
+     printf("\nArray after deletion:");
+	for (i = 0; i < n; i++)
+		printf("%d ", arr[i]);
+
+	return 0;
+}
+
+
+PROGRAM 05
+
+//AYUSHI TOMAR 
+//Admission No. 2021b0101022
+#include <stdio.h>
+
+// Function to find the missing number
+int getMissingNo(int a[], int n)
+{
+	int i, total;
+	total = (n + 1) * (n + 2) / 2;
+	for (i = 0; i < n; i++)
+		total -= a[i];
+	return total;
+}
+
+// Driver code
+void main()
+{
+	int arr[] = { 1, 2, 3, 5 };
+	int N = 4;
+
+	// Function call
+	int miss = getMissingNo(arr, N);
+	printf("%d", miss);
+}
+
+
+PROGRAM 06
+
+//AYUSHI TOMAR 
+//Admission No. 2021b0101022
+#include<stdio.h>
+#include<stdlib.h>
+void printRepeating(int arr[], int size)
+{
+int i, j;
+printf(" Repeating elements are :");
+for(i = 0; i < size-1; i++)
+	for(j = i+1; j < size; j++)
+	if(arr[i] == arr[j])
+		printf(" %d ", arr[i]);
+
+        printf("Non repeating elements :");
+        for(i = 0; i < size-1; i++)
+	for(j = i+1; j < size; j++)
+	if(arr[i] != arr[j])
+		printf(" %d ", arr[i]);
+}	
+
+int main()
+{
+int arr[] = {4, 2, 4, 5, 2, 3, 1};
+int n = 7;
+printRepeating(arr, n);
+getchar();
+return 0;
+}
+
+PROGRAM 07
+//AYUSHI TOMAR
+//Admission No. 2021b0101022
+
+#include <stdio.h>
+int main()
+{
+    int arr[10] = {1,2,3,4,5,6,7,8,9,10}; 
+    int n = 10;
+    int s=0;
+    int e = n-1; //
+    printf("original array : ");
+    for(int i =0;i<n;i++) //
+    {    
+printf("%d ",arr[i]);
+    }
+    printf("\n");
+
+      while(s<e)
+    {
+        int t = arr[s];
+        arr[s] = arr[e];
+        arr[e] = t;
+        s++;
+        e--;
+    }
+printf("reversed array : ");
+for(int i =0;i<n;i++)
+    {    
+printf("%d ",arr[i]);
+    }
+}
+
+PROGRAM 08
+Program for merging two sorted arrays
+# include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+
+void mergeArr(int *arr, int l, int h, int mid)
+{
+      int n1 = mid - l + 1;
+      int n2 = h - mid;
+      int aux1[n1], aux2[n2];
+      int n = h + 1;
+      int p = 0, q = 0, k = 0;
+      for (int i = l; i <= mid; i++)
+            aux1[p++] = arr[i];
+      for (int i = mid + 1; i <= h; i++)
+            aux2[q++] = arr[i];
+
+      p = 0, q = 0;
+      while (p <n1 && q < n2)
+      {
+            if (aux1[p] < aux2[q])
+                  arr[k++] = aux1[p++];
+            else
+                  arr[k++] = aux2[q++];
+      }
+      while (p < n1)
+            arr[k++] = aux1[p++];
+      while (q < n2)
+            arr[k++] = aux2[q++];
+}
+int main()
+{
+
+      int n;
+      cin >> n;
+      int arr[n];
+      for (int i = 0; i < n; i++)
+            cin >> arr[i];
+
+      int l, h;
+      cin >> l >> h;
+      int mid;
+      cin >> mid;
+      mergeArr(arr, l, h, mid);
+      for (int i = 0; i < n; i++)
+            cout << arr[i] << " ";
+
+      return 0;
+}
+
+PROGRAM 09
+Program for Set union
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+
+
+ vector<int> findUnion(int arr1[], int arr2[], int n1, int n2)
+    {
+         
+         int i=0,j=0;
+          vector<int>ans;
+         while(i<n1 and j<n2)
+            
+          {     if(i>0 and arr1[i] <= arr2[j] and arr1[i] == arr1[i-1]) i++;
+                else if(j>0 and arr2[j] < arr1[i] and arr2[j] == arr2[j-1])j++;
+              else if(arr1[i] > arr2[j]) ans.push_back(arr2[j]) , j++;
+              else if(arr1[i] < arr2[j]) ans.push_back(arr1[i]),i++;
+              else if(arr1[i] == arr2[j])   ans.push_back(arr1[i]) , i++,j++;
+
+          }
+          while(i<n1)
+           {
+                if(i>0 and arr1[i] == arr1[i-1]) i++;
+                else ans.push_back(arr1[i]),i++;
+           }
+           while(j<n2)
+           {
+                if(j>0 and arr2[j] == arr2[j-1]) j++;
+                else ans.push_back(arr2[j]),j++;
+           }
+           return ans;
+    }
+
+int main()
+{
+
+    
+
+
+
+return 0;
+}
+
+PROGRAM 10
+Program for Set Intersection
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+
+    vector<int> printIntersection(int arr1[], int arr2[], int N, int M) 
+    { 
+        
+              int i=0,j=0;
+              vector<int>intr;
+              while(i<N and j<M)
+              {
+                    if(arr1[i] < arr2[j]) i++;
+                    else if(arr1[i] > arr2[j]) j++;
+                    else if(arr1[i] == arr2[j])
+                     {
+                          if(i>0 and arr1[i] == arr1[i-1]) i++;
+                          else intr.push_back(arr1[i]) , i++,j++;
+                     }
+              }
+             if(intr.size() == 0) intr.push_back(-1);
+              return intr;
+    }
+
+int main()
+{
+
+      
+
+
+
+return 0;
+}
+
+PROGRAM 11
+Program for Set Difference
+#include<bits/stdc++.h>
+typedef long long int ll;
+using namespace std;
+
+void SetDiff(int arr[] , int brr[] , int n,int m)
+{
+      vector<int>diff;
+         int i = 0 , j=0;
+         while(i<n and j<m)
+         {
+              if(arr[i] == brr[j])
+              i++;
+              else if(arr[i] < brr[j])
+               diff.push_back(arr[i++]);
+
+               else
+                j++;
+         }
+         while(i<n) diff.push_back(arr[i++]);
+
+          cout<<"the diffference of entered arrays is:\n";
+            cout<<"{";
+           for(auto it:diff) cout<<" "<<it<<" ";
+           cout<<" }";
+}
+
+
+int main()
+{
+      int n1 ,n2;
+      cout<<"enter two numbers: for sizes of the two arrays\n";
+       cin>>n1>>n2;
+         cout<<"enter the elements of the first arrays\n";
+       int arr[n1] , brr[n2];
+       for(auto &it:arr) cin>>it;
+       cout<<"enter the elements of the second array\n";
+       for(auto &iit:brr) cin>>iit;
+
+       SetDiff(arr,brr,n1,n2);
+
+    
+
+
+
+return 0;
+}
+
+PROGRAM 12
+Program for Set Symmetric Difference
+#include<bits/stdc++.h>
+typedef long long int ll;
+using namespace std;
+
+void SetDiff(int arr[] , int brr[] , int n,int m)
+{
+      vector<int>diff;
+         int i = 0 , j=0;
+         while(i<n and j<m)
+         {
+              if(arr[i] == brr[j])
+              i++;
+              else if(arr[i] < brr[j])
+               diff.push_back(arr[i++]);
+
+               else
+                 diff.push_back(brr[j++]);
+                
+            
+         }
+         while(i<n) diff.push_back(arr[i++]);
+          while(j<m) diff.push_back(brr[j++]);
+
+          cout<<"the symmetric diffference of entered arrays is:\n";
+            cout<<"{";
+           for(auto it:diff) cout<<" "<<it<<" ";
+           cout<<" }";
+}
+
+
+int main()
+{
+      int n1 ,n2;
+      cout<<"enter two numbers: for sizes of the two arrays\n";
+       cin>>n1>>n2;
+         cout<<"enter the elements of the first arrays\n";
+       int arr[n1] , brr[n2];
+       for(auto &it:arr) cin>>it;
+       cout<<"enter the elements of the second array\n";
+       for(auto &iit:brr) cin>>iit;
+
+       SetDiff(arr,brr,n1,n2);
+
+    
+
+
+
+return 0;
+}
+
+
+                                                               PROGRAM-13
+  PROGRAM NAME:  Matrix
+  DOMAIN:  Arrays
+  PROGRAM TITLE :     Program for matrix addition
+
+INPUT:
+#include < stdio.h >   
+int main()  
+{  
+   //AYUSHI TOMAR
+   //2021b0101022
+    int m, n, c, d, first[10][10], second[10][10], sum[10][10];  
+    printf("Enter the number of rows and columns of matrix\n");  
+    scanf("%d%d", & m, & n);  
+    printf("Enter the elements of first matrix\n");  
+    for (c = 0; c < m; c++)  
+        for (d = 0; d < n; d++) scanf("%d", & first[c][d]);  
+    printf("Enter the elements of second matrix\n");  
+    for (c = 0; c < m; c++)  
+        for (d = 0; d < n; d++) scanf("%d", & second[c][d]);  
+    printf("Sum of entered matrices:-\n");  
+    for (c = 0; c < m; c++)  
+    {  
+        for (d = 0; d < n; d++)  
+        {  
+            sum[c][d] = first[c][d] + second[c][d];  
+            printf("%d\t", sum[c][d]);  
+        }  
+        printf("\n");  
+    }  
+    return 0;  
+}
+
+OUTPUT
+
+                                                               PROGRAM-14
+
+PROGRAM NAME:  Matrix
+DOMAIN:  Arrays
+PROGRAM TITLE :     Program for matrix Subtraction.
+
+#include < stdio.h >   
+int main()   
+//AYUSHI TOMAR
+//2021b0101022
+{  
+    int m, n, c, d, first[10][10], second[10][10], difference[10][10];  
+    printf("Enter the number of rows and columns of matrix\n");  
+    scanf("%d%d", & m, & n);  
+    printf("Enter the elements of first matrix\n");  
+    for (c = 0; c < m; c++)  
+        for (d = 0; d < n; d++) scanf("%d", & first[c][d]);  
+    printf("Enter the elements of second matrix\n");  
+    for (c = 0; c < m; c++)  
+        for (d = 0; d < n; d++) scanf("%d", & second[c][d]);  
+    printf("Difference of entered matrices:-\n");  
+    for (c = 0; c < m; c++)   
+    {  
+        for (d = 0; d < n; d++)   
+        {  
+            difference[c][d] = first[c][d] - second[c][d];  
+            printf("%d\t", difference[c][d]);  
+        }  
+        printf("\n");  
+    }  
+    return 0;  
+} 
+
+OUTPUT:
+
+                                                               PROGRAM-15
+
+PROGRAM NAME:  Matrix
+DOMAIN:  Arrays
+PROGRAM TITLE :     Program for matrix Multiplication.
+#include <stdio.h>
+//AYUSHI TOMAR 
+//2021b0101022
+// function to get matrix elements entered by the user
+void getMatrixElements(int matrix[][10], int row, int column) {
+
+   printf("\nEnter elements: \n");
+
+   for (int i = 0; i < row; ++i) {
+      for (int j = 0; j < column; ++j) {
+         printf("Enter a%d%d: ", i + 1, j + 1);
+         scanf("%d", &matrix[i][j]);
+      }
+   }
+}
+
+// function to multiply two matrices
+void multiplyMatrices(int first[][10],
+                      int second[][10],
+                      int result[][10],
+                      int r1, int c1, int r2, int c2) {
+
+   // Initializing elements of matrix mult to 0.
+   for (int i = 0; i < r1; ++i) {
+      for (int j = 0; j < c2; ++j) {
+         result[i][j] = 0;
+      }
+   }
+
+   // Multiplying first and second matrices and storing it in result
+   for (int i = 0; i < r1; ++i) {
+      for (int j = 0; j < c2; ++j) {
+         for (int k = 0; k < c1; ++k) {
+            result[i][j] += first[i][k] * second[k][j];
+         }
+      }
+   }
+}
+
+// function to display the matrix
+void display(int result[][10], int row, int column) {
+
+   printf("\nOutput Matrix:\n");
+   for (int i = 0; i < row; ++i) {
+      for (int j = 0; j < column; ++j) {
+         printf("%d  ", result[i][j]);
+         if (j == column - 1)
+            printf("\n");
+      }
+   }
+}
+
+int main() {
+   int first[10][10], second[10][10], result[10][10], r1, c1, r2, c2;
+   printf("Enter rows and column for the first matrix: ");
+   scanf("%d %d", &r1, &c1);
+   printf("Enter rows and column for the second matrix: ");
+   scanf("%d %d", &r2, &c2);
+
+   // Taking input until
+   // 1st matrix columns is not equal to 2nd matrix row
+   while (c1 != r2) {
+      printf("Error! Enter rows and columns again.\n");
+      printf("Enter rows and columns for the first matrix: ");
+      scanf("%d%d", &r1, &c1);
+      printf("Enter rows and columns for the second matrix: ");
+      scanf("%d%d", &r2, &c2);
+   }
+
+   // get elements of the first matrix
+   getMatrixElements(first, r1, c1);
+
+   // get elements of the second matrix
+   getMatrixElements(second, r2, c2);
+
+   // multiply two matrices.
+   multiplyMatrices(first, second, result, r1, c1, r2, c2);
+
+   // display the result
+   display(result, r1, c2);
+
+   return 0;
+}
+
+OUTPUT
+ 
+
+  
+                                                                PROGRAM-4
+
+PROGRAM NAME:  Matrix
+DOMAIN:  Arrays
+PROGRAM TITLE :     Program for matrix transpose.
+//AYUSHI TOMAR
+//2021b0101022
+#include <stdio.h>
+int main(){
+    int A[3][3],B[3][3];
+    printf("Matrix is :\n");
+    for(int i =0;i<3;i++)
+    {
+        for(int j =0;j<3;j++)
+        {
+            scanf("%d" , &A[i][j]);
+        }
+
+    }
+    
+    for(int i=0;i<3;i++)
+    {
+        for(int j =0;j<3;j++)
+        {
+           B[j][i] = A[i][j];
+        }
+    }
+
+  printf("Transpose of the matrix is:\n");
+    for(int i=0;i<3;i++)
+    {
+        for(int j =0;j<3;j++)
+        {
+        printf("%d ",B[i][j]);  
+        }
+     printf("\n");
+            }
+  return 0 ;
+}
+OUTPUT:
+ 
+                                                                              PROGRAM-05
+PROGRAM NAME:  Matrix
+DOMAIN:  Arrays
+PROGRAM TITLE :     Program for finding Matrix Determinant
+//AYUSHI TOMAR
+//2021b0101022
+#include<stdio.h>
+ 
+int main(){
+ 
+  int a[3][3], i, j;
+ 
+  long determinant;
+  printf("Enter the 9 elements of matrix: ");
+  for(i = 0 ;i < 3;i++)
+      for(j = 0;j < 3;j++)
+           scanf("%d", &a[i][j]);
+ 
+  printf("\nThe matrix is\n");
+  for(i = 0;i < 3; i++){
+      printf("\n");
+      for(j = 0;j < 3; j++)
+           printf("%d\t", a[i][j]);
+  }
+ 
+  determinant = a[0][0] * ((a[1][1]*a[2][2]) - (a[2][1]*a[1][2])) -a[0][1] * (a[1][0]
+   * a[2][2] - a[2][0] * a[1][2]) + a[0][2] * (a[1][0] * a[2][1] - a[2][0] * a[1][1]);
+ 
+  printf("\nDeterminant of 3X3 matrix: %ld", determinant);
+ 
+   return 0;
+}
+
+
+OUTPUT:
+
+ 
+
+                                                                 PROGRAM-06
+  PROGRAM NAME:  Matrix
+  DOMAIN:  Arrays
+  PROGRAM TITLE :     Program for finding Matrix transposition without second matrix
+//AYUSHI TOMAR
+//2021b0101022
+
+#include <stdio.h>
+int main()
+{
+    int m, n;
+    printf("ENTER THE VALUES OF NUMBER OF ROWS AND COLUMNS");
+    scanf("%d %d", &m, &n);
+    int a[m][n];
+    
+    printf("ENTER THE MATRIX 1\n");
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            scanf("%d", &a[i][j]);
+        }
+    }
+
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+           int temp;
+           temp = a[i][j];
+           a[i][j]=a[j][i];
+           a[j][i]=temp;
+
+        }
+    }
+
+    printf("PRINTING THE MATRIX\n");
+    for (int j = 0; j < m; j++)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            printf("%d ", a[i][j]);
+        }
+            printf("\n");
+    }
+
+    return 0;
+}
+
+PROGRAM 16
+Program for Matrix Addition
+#include<bits/stdc++.h>
+typedef long long int ll;
+using namespace std;
+
+int main()
+{
+    vector<vector<int>>mat;
+     vector<vector<int>>matt;
+
+      int n ,m , nn ,mm; cin>>n>>m>>nn>>mm;
+      for(int i=0;i<n;i++)
+      {
+          vector<int>row;
+          for(int i=0;i<m;i++)
+          {
+              int x; cin>>x;
+               row.push_back(x);
+          }
+          mat.push_back(row);
+      }
+
+       for(int i=0;i<nn;i++)
+      {
+          vector<int>row;
+          for(int i=0;i<mm;i++)
+          {
+              int x; cin>>x;
+               row.push_back(x);
+          }
+          mat.push_back(row);
+      }
+
+      if(nn!=n or m!=mm ) cout<<"can't be added\n";
+       else{
+          for(int i=0;i<n;i++)
+          {
+              for(int j=0;j<m;j++)
+              {
+                   cout<< ( mat[i][j] + matt[i][j])<<" ";
+              }
+              cout<<"\n";
+          }
+        
+       }
+
+
+    
+
+
+
+return 0;
+}
+
+PROGRAM 17
+Program for Matrix Subtraction
+#include<bits/stdc++.h>
+typedef long long int ll;
+using namespace std;
+
+int main()
+{
+    vector<vector<int>>mat;
+     vector<vector<int>>matt;
+
+      int n ,m , nn ,mm; cin>>n>>m>>nn>>mm;
+      for(int i=0;i<n;i++)
+      {
+          vector<int>row;
+          for(int i=0;i<m;i++)
+          {
+              int x; cin>>x;
+               row.push_back(x);
+          }
+          mat.push_back(row);
+      }
+
+       for(int i=0;i<nn;i++)
+      {
+          vector<int>row;
+          for(int i=0;i<mm;i++)
+          {
+              int x; cin>>x;
+               row.push_back(x);
+          }
+          mat.push_back(row);
+      }
+
+      if(nn!=n or m!=mm ) cout<<"can't be added\n";
+       else{
+          for(int i=0;i<n;i++)
+          {
+              for(int j=0;j<m;j++)
+              {
+                   cout<< ( mat[i][j] - matt[i][j])<<" ";
+              }
+              cout<<"\n";
+          }
+        
+       }
+
+
+    
+
+
+
+return 0;
+}
+
+PROGRAM 18
+Program for Matrix Multiplication
+A#include<bits/stdc++.h>
+typedef long long int ll;
+using namespace std;
+
+
+vector<vector<int>> multiply(vector<vector<int>>matrix1 , vector<vector<int>>matrix2)
+
+  {
+            int n1 = matrix1.size() , m1 = matrix1[0].size();
+            int n2 = matrix2.size() , m2 = matrix2[0].size();
+              vector<vector<int>>multi;
+            
+            for(int i=0;n1;i++)
+            {
+                    vector<int>row;
+                   for(int j=0;j<m2;j++)
+                   {
+                             int sum=0;
+                           for(int k=0;k<m1;k++)
+                           {
+                                 sum+= (matrix1[i][k]*matrix2[k][j]);
+                                 
+                           }
+                           row.push_back(sum);
+                   }
+                   multi.push_back(row);
+            }
+            return multi;
+              
+         
+  }
+int main()
+{
+      int n1, n2,m1,m2;
+      cin>>n1>>m1>>n2>>m2;
+
+     
+
+      if(m1 == n2)
+      {
+             vector<vector<int>>matrix1;
+             vector<vector<int>>matrix2;
+              cout<<"enter elements for the first matrix:\n";
+              for(int i=0;i<n1;i++)
+              {
+                    vector<int>row;
+                    for(int j=0;j<m1;j++)
+                      {
+                          int x; cin>>x; row.push_back(x);
+                      }
+                      matrix1.push_back(row);
+              }
+
+              cout<<"enter elements for the second matrix:\n";
+              for(int i=0;i<n2;i++)
+              {
+                    vector<int>row;
+                    for(int j=0;j<m2;j++)
+                      {
+                          int x; cin>>x; row.push_back(x);
+                      }
+                      matrix2.push_back(row);
+              }
+
+
+           vector<vector<int>>ans = multiply(matrix1,matrix2);
+
+
+            cout<<"the product of the entered matrices is:\n";
+
+              for(int i=0;i<ans.size();i++)
+              {
+
+                     for(int j=0;j<ans[0].size();j++)
+                      cout<<ans[i][j]<<" ";
+                      cout<<"\n";
+              }
+
+
+      }
+      else cout<<"can't be multiplied\n";
+
+    
+
+
+
+return 0;
+}
+
+
+PROGRAM 19
+
+Program for Matrix Transpose
+#include<bits/stdc++.h>
+typedef long long int ll;
+using namespace std;
+
+// transpose without using extra space , works only matrix is square
+void traspose(vector<vector<int>>&arr)
+{
+     for(int i=0;i<arr.size();i++)
+     {
+          //   for(int j=0;j<arr[i].size();j++)
+          //   {
+          //           if(i+j > 2*i) swap(arr[i][j] , arr[j][i]);
+          //   }
+          for(int j= i+1;j<arr.size();j++) swap(arr[i][j] , arr[j][i]);
+     }
+         
+}
+
+void printArr(vector<vector<int>>arr)
+{
+        for(int i=0;i<arr.size();i++)
+        {
+             for(int j=0;j<arr[i].size();j++)
+               cout<<arr[i][j]<<" ";  cout<<"\n";
+        }
+}
+int main()
+{
+     #ifndef ONLINE_JUDGE
+     freopen("i_p.txt", "r", stdin);
+     freopen("o_p.txt", "w", stdout);
+     #endif
+
+       vector<vector<int>>arr;
+        int n , m; cin>>n>>m;
+        for(int i=0;i<n;i++)
+        {    vector<int>tp;
+             for(int j=0;j<m;j++)
+             {
+                 int x; cin>>x; tp.push_back(x);
+             }
+             arr.push_back(tp);
+        }
+
+        traspose(arr);
+        printArr(arr);
+
+
+
+return 0;
+}
+
+PROGRAM 20
+Program for finding Matrix Determinant
+#include<stdio.h>
+ 
+int main(){
+ 
+  int a[3][3], i, j;
+ 
+  long determinant;
+  printf("Enter the 9 elements of matrix: ");
+  for(i = 0 ;i < 3;i++)
+      for(j = 0;j < 3;j++)
+           scanf("%d", &a[i][j]);
+ 
+  printf("\nThe matrix is\n");
+  for(i = 0;i < 3; i++){
+      printf("\n");
+      for(j = 0;j < 3; j++)
+           printf("%d\t", a[i][j]);
+  }
+ 
+  determinant = a[0][0] * ((a[1][1]*a[2][2]) - (a[2][1]*a[1][2])) -a[0][1] * (a[1][0]
+   * a[2][2] - a[2][0] * a[1][2]) + a[0][2] * (a[1][0] * a[2][1] - a[2][0] * a[1][1]);
+ 
+  printf("\nDeterminant of 3X3 matrix: %ld", determinant);
+ 
+   return 0;
+}
+
+PROGRAM 21
+Program for Matrix transposition without second matrix
+#include<stdio.h>
+#include<conio.h>
+
+int main() {
+    int a[5][5], i, j, t, m, n;
+    clrscr();
+
+    printf("\n\n\t Transpose of a matrix");
+    printf("\n\n\t Please enter rows of a matrix");
+    scanf("%d", &m);
+
+    printf("\n\n\t Enter columsn of a matrix");;
+    scanf("%d", &n);
+
+    if(m == n) {
+        printf("\n\n\t Please enter a matrix");
+
+        for(i=0; i<m; i++) {
+            printf("\n\n\t Enter row %d", (int+1));
+
+            for(j=0; j<n; j++) {
+                scanf("%d", &a[i][j]);
+            }
+        }
+
+        for(i=0; i<m; i++) {
+            for(j=0; j<n; j++) {
+                if( (i != j) && (i > j) ) {
+                    t = a[i][j];
+                    a[i][j] = a[j][i];
+                    a[j][i] = t;
+                }
+            }
+        }
+
+        printf("\n\n\t Transpose \n\n\t");
+        for(i=0; i<m; i++) {
+            for(j=0; j<n; j++) {
+                printf("  %d", a[i][j]);
+            }
+            printf("\n\n\t");
+        }
+
+    }
+    else {
+        printf("\n\n\t Not a square matrix");
+    }
+
+    getch();
+    return 0;
+}
