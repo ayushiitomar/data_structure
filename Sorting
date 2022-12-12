@@ -1,0 +1,720 @@
+PROGRAM 01
+Program for Bubble Sort
+#include<bits/stdc++.h>
+#define 11 long long
+using namespace std;
+//bubble sort
+/*
+In one iteration if we swap all adjacent elements of an array such that 
+after swap the first element is less than the second element then at the end of the iteration,
+the first element of the array will be the minimum element.
+Time complexity- theta(n^2)
+space complexity- O(1)
+sable 
+inplace(dont requires any extra space for sorting)
+stable:- bubble, insertion, merge
+unstable:- selection, heap, quick
+*/
+void bubble_sort(int arr[],int n)
+{
+    for(int i=0;i<n-1;i++)
+    {
+        bool swapped = false;
+        for(int j=0;j<n-i-1;j++)
+        {
+            if(arr[j]>arr[j+1])
+            {
+                swap(arr[j],arr[j+1]);
+                swapped=true;
+            }
+        }
+        if(!swapped)return;
+    }
+}
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[n];
+    for(auto &it:arr)cin>>it;
+    bubble_sort(arr,n);
+    for(auto &it:arr)cin<<it<<" ";
+    return0;
+}
+/*RECURSSIVE BUBBLE SORT
+#include<bits/stdc++.h>
+#define 11 long long
+using namespace std;
+
+void rec( int arr[],int i, int j=0)
+{
+    if(i==1)return;
+    else if(j<i-1)
+    {
+        if(arr[j]<arr[j+1])
+        swap(arr[j],arr[j+1]);
+        rec(arr,i,j+1);
+    }
+}
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[n];
+    for(auto &it:arr)cin>>it;
+    rec(arr,n);
+    for(int i=0;i<n;i++)
+    cout<<arr[i]<<" ";
+    return0;
+}
+*/
+
+
+PROGRAM 02
+Program for Selection Sort
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+
+//AYUSHI TOMAR
+//2021B0101022
+ /* selection sort
+   The selection sort algorithm sorts an array by repeatedly finding the minimum element (considering ascending order) from unsorted part and putting it at the beginning.
+    The algorithm maintains two subarrays in a given array. one sorted and other unsorted
+    arr[] = 64 25 12 22 11.
+
+// Find the minimum element in arr[0...4]
+// and place it at beginning
+11 25 12 22 64
+
+// Find the minimum element in arr[1...4]
+// and place it at beginning of arr[1...4]
+11 12 25 22 64
+
+// Find the minimum element in arr[2...4]
+// and place it at beginning of arr[2...4]
+11 12 22 25 64
+
+// Find the minimum element in arr[3...4]
+// and place it at beginning of arr[3...4]
+11 12 22 25 64
+  
+ time:- O(n^2)
+ inplace
+ unstable
+ does less memory write than other algorithm but the efficient algo in term of memory write is cycle sort
+ it is the basic idea of heap sort
+    */
+ void selection_sort(int arr[],int n)
+  {
+       for(int i=0;i<n-1;i++)
+        {
+             int minInd = i;
+              for(int j=i+1;j<n;j++){
+                 if(arr[minInd] > arr[j])
+                   minInd = j;
+              }
+              swap(arr[i],arr[minInd]);
+        }
+  }
+int main()
+{
+     int n;
+       cin>>n;
+         int arr[n];
+         for(auto &it:arr) cin>>it;
+
+         selection_sort(arr,n);
+
+         for(auto it:arr)cout<<it<<" ";
+     
+
+
+
+return 0;
+}
+
+PROGRAM 03
+Program for Insertion Sort
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+//AYUSHI TOMAR
+//2021B0101022
+/*
+   insertion sort
+    time := O(n^2) ,best case(1,2,4) :- theeta👎
+    inplace and stable
+    used in practice for small arrays(timsort and introsort)
+    */
+ void sort_insert(int arr[],int n)
+ {
+      for(int i=1;i<n;i++)
+       {
+           int key = arr[i];
+             int j = i-1;
+             while(j>=0 and arr[j]>key)
+              {
+                   arr[j+1] = arr[j];
+                   j--;
+              }
+              arr[j+1] = key;
+              
+       }
+ }
+int main()
+{
+
+      int n;
+       cin>>n;
+        int arr[n];
+
+        for(int i=0;i<n;i++) cin>>arr[i];
+
+        sort_insert(arr,n);
+        for(int i:arr)cout<<i<<" ";
+
+
+
+return 0;
+}
+
+PROGRAM 04
+Program for Implementation of Shell Sort
+#include <stdio.h>
+void swap(int *a, int *b)
+{
+    *a=*a + *b;
+    *b=*a - *b;
+    *a=*a - *b;
+    return ;
+}
+ 
+// Function definition of sort array using shell sort
+void shellsort(int arr[], int nums)
+{
+    // i -> gap/interval
+    for (int i = nums / 2; i > 0; i = i / 2)
+    {
+        // Traverse j till we reach the end of the sublist.
+        for (int j = i; j < nums; j++)
+        {
+            for(int k = j - i; k >= 0; k = k - i)
+            {
+                if (arr[k+i] >= arr[k])
+                {
+                    break;
+                }
+                else
+                {
+                    swap(&arr[k], &arr[k+i]);
+                }
+            }
+        }
+    }
+    return ;
+}
+ 
+int main()
+{
+    int nums;
+    printf("Enter total no. of elements :: ");
+    scanf("%d", &nums);
+    int arr[nums];
+    printf("Enter the array:: \n");
+    //scan the array elements.
+    for (int k =  0 ; k < nums; k++)
+    {
+                scanf("%d", &arr[k]);
+    }
+ 
+    //Call the function of shell sort, bypassing the array base pointer to the first element.
+    shellsort(arr, nums);
+ 
+    // After the sorting the array is
+    printf("Sorted array is:  \n");
+    for (int k = 0; k < nums; k++)
+    {
+        printf("%d ", arr[k]);
+    }	
+    return 0;
+}
+PROGRAM 05
+Program for Merge Sort
+
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+
+
+/* MERGE SORT
+ :- div and conc.
+ :- TC = theeta nlog(n)   n at first level and log(n) to divide
+ :- aux = O👎
+ :- stable 
+*/
+
+void mergeArr(int arr[],int l,int m,int h)
+{
+    int n1 = m-l+1,n2=h-m;
+    int a[n1] , b[n2];
+    for(int i=0;i<n1;i++)a[i]=arr[i+l];
+    for(int i=0;i<n2;i++) b[i] = arr[m+1+i];
+
+    int p=0,q=0,r=l;
+    while(p<n1 && q<n2)
+    {
+        if(a[p]<b[q]) arr[r++] = a[p++];
+        else arr[r++] = b[q++];
+    }
+    while(p<n1) arr[r++] = a[p++];
+    while(q<n2) arr[r++] = b[q++];
+}
+
+void mergeSort(int arr[],int l,int h)
+{
+    if(l<h){        //if(l==h) return
+        int m = (l+h)/2;
+        mergeSort(arr,l,m);
+        mergeSort(arr,m+1,h);
+        mergeArr(arr,l,m,h);
+    }
+    
+    PROGRAM 06
+  Program for Quick Sort
+  //AYUSHI TOMAR
+//2021B0101022
+/* Bubble sort code */
+#include <stdio.h>
+
+int main()
+{
+  int array[100], n, c, d, swap;
+
+  printf("Enter number of elements\n");
+  scanf("%d", &n);
+
+  printf("Enter %d integers\n", n);
+
+  for (c = 0; c < n; c++)
+    scanf("%d", &array[c]);
+
+  for (c = 0 ; c < n - 1; c++)
+  {
+    for (d = 0 ; d < n - c - 1; d++)
+    {
+      if (array[d] > array[d+1]) /* For decreasing order use '<' instead of '>' */
+      {
+        swap       = array[d];
+        array[d]   = array[d+1];
+        array[d+1] = swap;
+      }
+    }
+  }
+
+  printf("Sorted list in ascending order:\n");
+
+  for (c = 0; c < n; c++)
+     printf("%d\n", array[c]);
+
+  return 0;
+}
+
+PROGRAM 07
+Program for Median Quick Sort
+#include "bits/stdc++.h"
+using namespace std;
+
+// Utility function to swapping of element
+void swap(int* a, int* b)
+{
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
+// Returns the correct position of
+// pivot element
+int Partition(int arr[], int l, int r)
+{
+	int lst = arr[r], i = l, j = l;
+	while (j < r) {
+		if (arr[j] < lst) {
+			swap(&arr[i], &arr[j]);
+			i++;
+		}
+		j++;
+	}
+	swap(&arr[i], &arr[r]);
+	return i;
+}
+
+// Picks a random pivot element between
+// l and r and partitions arr[l..r]
+// around the randomly picked element
+// using partition()
+int randomPartition(int arr[], int l,
+					int r)
+{
+	int n = r - l + 1;
+	int pivot = rand() % n;
+	swap(&arr[l + pivot], &arr[r]);
+	return Partition(arr, l, r);
+}
+
+// Utility function to find median
+void MedianUtil(int arr[], int l, int r,
+				int k, int& a, int& b)
+{
+
+	// if l < r
+	if (l <= r) {
+
+		// Find the partition index
+		int partitionIndex
+			= randomPartition(arr, l, r);
+
+		// If partition index = k, then
+		// we found the median of odd
+		// number element in arr[]
+		if (partitionIndex == k) {
+			b = arr[partitionIndex];
+			if (a != -1)
+				return;
+		}
+
+		// If index = k - 1, then we get
+		// a & b as middle element of
+		// arr[]
+		else if (partitionIndex == k - 1) {
+			a = arr[partitionIndex];
+			if (b != -1)
+				return;
+		}
+
+		// If partitionIndex >= k then
+		// find the index in first half
+		// of the arr[]
+		if (partitionIndex >= k)
+			return MedianUtil(arr, l,
+							partitionIndex - 1,
+							k, a, b);
+
+		// If partitionIndex <= k then
+		// find the index in second half
+		// of the arr[]
+		else
+			return MedianUtil(arr,
+							partitionIndex + 1,
+							r, k, a, b);
+	}
+
+	return;
+}
+
+// Function to find Median
+void findMedian(int arr[], int n)
+{
+	int ans, a = -1, b = -1;
+
+	// If n is odd
+	if (n % 2 == 1) {
+		MedianUtil(arr, 0, n - 1,
+				n / 2, a, b);
+		ans = b;
+	}
+
+	// If n is even
+	else {
+		MedianUtil(arr, 0, n - 1,
+				n / 2, a, b);
+		ans = (a + b) / 2;
+	}
+
+	// Print the Median of arr[]
+	cout << "Median = " << ans;
+}
+
+// Driver program to test above methods
+int main()
+{
+	int arr[] = { 12, 3, 5, 7, 4, 19, 26 };
+	int n = sizeof(arr) / sizeof(arr[0]);
+	findMedian(arr, n);
+	return 0;
+}
+
+ PROGRAM 
+ Program for Randomized Quick Sort
+ #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int partition(int arr[], int low, int high)
+{
+	int pivot = arr[low];
+	int i = low - 1, j = high + 1;
+
+	while (1) {
+
+		do {
+			i++;
+		} while (arr[i] < pivot);
+
+		do {
+			j--;
+		} while (arr[j] > pivot);
+
+		if (i >= j)
+			return j;
+
+		int temp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = temp;
+	}
+}
+
+int partition_r(int arr[], int low, int high)
+{
+	srand(time(0));
+	int random = low + rand() % (high - low);
+
+	int temp = arr[random];
+	arr[random] = arr[low];
+	arr[low] = temp;
+
+	return partition(arr, low, high);
+}
+
+void quickSort(int arr[], int low, int high)
+{
+	if (low < high) {
+		int pi = partition_r(arr, low, high);
+
+		quickSort(arr, low, pi);
+		quickSort(arr, pi + 1, high);
+	}
+}
+
+void printArray(int arr[], int n)
+{
+	for (int i = 0; i < n; i++)
+		printf("%d ", arr[i]);
+	printf("\n");
+}
+
+int main()
+{
+	int arr[] = { 10, 7, 8, 9, 1, 5 };
+	int n = sizeof(arr) / sizeof(arr[0]);
+	quickSort(arr, 0, n - 1);
+	printf("Sorted array: \n");
+	printArray(arr, n);
+	return 0;
+}
+
+PROGRAM 09
+Program for Counting Sort
+#include <bits/stdc++.h>
+typedef long long int ll;
+using namespace std;
+
+void countNsort(int arr[], int n)
+{
+    int lo = 0, hi = n - 1;
+    int k = INT_MIN;
+    for (int i = 0; i < n; i++)
+        k = max(arr[i], k);
+      int count[k + 1] = {0};
+    for (int i = 0; i < n; i++)
+    {
+        count[arr[i]]++;
+    }
+    
+    for (int i = 1; i <= k; i++)
+    {
+        count[i] += count[i - 1];
+    }
+    int ans[n];
+    for (int i = n - 1; i >= 0; i--)
+    {
+        count[arr[i]]--;
+        ans[count[arr[i]]] = arr[i];
+    }
+    cout << "the sorted array is:\n";
+    for (auto it : ans)
+        cout << it << " ";
+    cout << "\n";
+}
+int main()
+{
+    int n;
+    cout << "enter the number of elements in the array:\n";
+    cin >> n;
+
+    int arr[n];
+    cout << "enter the elements of the array:\n";
+    for (auto &it : arr)
+        cin >> it;
+
+    countNsort(arr, n);
+
+    return 0;
+}
+
+PROGRAM 10
+Program for Radix Sort
+
+#include <stdio.h>
+int getMax(int array[], int n) {
+  int max = array[0];
+  for (int i = 1; i < n; i++)
+    if (array[i] > max)
+      max = array[i];
+  return max;
+}
+void countingSort(int array[], int size, int place) {
+  int output[size + 1];
+  int max = (array[0] / place) % 10;
+
+  for (int i = 1; i < size; i++) {
+    if (((array[i] / place) % 10) > max)
+      max = array[i];
+  }
+  int count[max + 1];
+
+  for (int i = 0; i < max; ++i)
+    count[i] = 0;
+
+  // Calculate count of elements
+  for (int i = 0; i < size; i++)
+    count[(array[i] / place) % 10]++;
+    
+  // Calculate cumulative count
+  for (int i = 1; i < 10; i++)
+    count[i] += count[i - 1];
+
+  // Place the elements in sorted order
+  for (int i = size - 1; i >= 0; i--) {
+    output[count[(array[i] / place) % 10] - 1] = array[i];
+    count[(array[i] / place) % 10]--;
+  }
+
+  for (int i = 0; i < size; i++)
+    array[i] = output[i];
+}
+
+// Main function to implement radix sort
+void radixsort(int array[], int size) {
+  // Get maximum element
+  int max = getMax(array, size);
+
+  // Apply counting sort to sort elements based on place value.
+  for (int place = 1; max / place > 0; place *= 10)
+    countingSort(array, size, place);
+}
+
+// Print an array
+void printArray(int array[], int size) {
+  for (int i = 0; i < size; ++i) {
+    printf("%d  ", array[i]);
+  }
+  printf("\n");
+}
+
+// Driver code
+int main() {
+  int array[] = {121, 432, 564, 23, 1, 45, 788};
+  int n = sizeof(array) / sizeof(array[0]);
+  radixsort(array, n);
+  printArray(array, n);
+}
+ 
+ PROGRAM 11
+ // Heap Sort in C
+
+#include <stdio.h>
+void swap(int* a, int* b)
+{
+
+	int temp = *a;
+
+	*a = *b;
+
+	*b = temp;
+}
+void heapify(int arr[], int N, int i)
+{
+	// Find largest among root, left child and right child
+
+	// Initialize largest as root
+	int largest = i;
+
+	// left = 2*i + 1
+	int left = 2 * i + 1;
+
+	// right = 2*i + 2
+	int right = 2 * i + 2;
+
+	// If left child is larger than root
+	if (left < N && arr[left] > arr[largest])
+
+		largest = left;
+
+	// If right child is larger than largest
+	// so far
+	if (right < N && arr[right] > arr[largest])
+
+		largest = right;
+
+	// Swap and continue heapifying if root is not largest
+	// If largest is not root
+	if (largest != i) {
+
+		swap(&arr[i], &arr[largest]);
+
+		// Recursively heapify the affected
+		// sub-tree
+		heapify(arr, N, largest);
+	}
+}
+
+// Main function to do heap sort
+void heapSort(int arr[], int N)
+{
+
+	// Build max heap
+	for (int i = N / 2 - 1; i >= 0; i--)
+
+		heapify(arr, N, i);
+
+	// Heap sort
+	for (int i = N - 1; i >= 0; i--) {
+
+		swap(&arr[0], &arr[i]);
+
+		// Heapify root element to get highest element at
+		// root again
+		heapify(arr, i, 0);
+	}
+}
+
+// A utility function to print array of size n
+void printArray(int arr[], int N)
+{
+	for (int i = 0; i < N; i++)
+		printf("%d ", arr[i]);
+	printf("\n");
+}
+
+// Driver's code
+int main()
+{
+	int arr[] = { 12, 11, 13, 5, 6, 7 };
+	int N = sizeof(arr) / sizeof(arr[0]);
+
+	// Function call
+	heapSort(arr, N);
+	printf("Sorted array is\n");
+	printArray(arr, N);
+}
