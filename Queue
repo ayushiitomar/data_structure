@@ -1,0 +1,502 @@
+PROGRAM-01
+Program of Array Implementaion of Linear Queue
+using System;
+
+namespace ConsoleApplication1
+{
+    class LinearQueue
+    {
+        private int []ele;
+        private int front;
+        private int rear;
+        private int max;
+
+        public LinearQueue(int size)
+        {
+            ele = new int[size];
+            front  = 0 ;
+            rear   = -1;
+            max = size;
+        }
+
+        public void insert(int item)
+        {
+            if (rear == max-1)
+            {
+                Console.WriteLine("Queue Overflow");
+                return;
+            }
+            else
+            {
+                ele[++rear] = item;
+            }
+        }
+
+        public int delete()
+        { 
+            if(front == rear + 1)
+            {
+                Console.WriteLine("Queue is Empty");
+                return -1;
+            }
+            else
+            {
+                Console.WriteLine("deleted element is: " + ele[front]);
+                return ele[front++];
+            }
+        }
+
+        public void printQueue()
+        {
+            if (front == rear + 1)
+            {
+                Console.WriteLine("Queue is Empty");
+                return;
+            }
+            else
+            {
+                for (int i = front; i <= rear; i++)
+                {
+                    Console.WriteLine("Item[" + (i + 1) + "]: " + ele[i]);
+                }
+            }
+        }
+    }
+
+    class Program
+    {
+        static void Main()
+        {
+            LinearQueue Q = new LinearQueue(5);
+
+            Q.insert(10);
+            Q.insert(20);
+            Q.insert(30);
+            Q.insert(40);
+            Q.insert(50);
+
+            Console.WriteLine("Items are : ");
+            Q.printQueue();
+            
+            Q.delete();
+            Q.delete();
+
+            Console.WriteLine("Items are : ");
+            Q.printQueue();
+        }
+    }
+}
+
+PROGRAM-03
+//Programs to implement a double ended queue ADT using arrays
+
+#include
+#define SIZE 30
+int dequeue[SIZE];
+int front=-1,rear=-1; /* initializing front and rear*/
+
+void insertrear(int);
+void deletefront();
+void insertfront(int);
+
+void deleterear();
+void traverse();
+
+/main program/
+void main()
+{
+
+int choice,item;
+char ch;
+do
+{
+printf("\n options are");
+
+printf("\n press 1 to insert at rear");
+printf("\n press 2 to delete at front");
+
+printf("\n press 3 to insert at front");
+printf("\n press 4 to delete at rear");
+scanf("%d",&choice);
+
+switch(choice) /switch case/
+{
+case 1: printf("\n enter the element:");
+scanf("%d",&item);
+
+
+insertrear(item); /function call for inserting element at rear/ break;
+case 2: deletefront(); /function call for deleting element at front/
+
+break;
+case 3: printf("enter the element:");
+scanf("%d",&item);
+
+insertfront(item); /function call for inserting element at front/ break;
+
+case 4: deleterear();/function call for deleting element at rear/ break;
+
+case 5: traverse(); /traversing the list/
+break;
+default : printf("wrong choice");
+} /end of switch case/
+printf("\n do you want to perform more operations?(Y/N):");
+
+fflush(stdin);
+scanf(" %c",&ch);
+} while(ch=='Y'||ch=='y');
+}
+
+/insertion at rear/
+void insertrear(int value) /function definition/
+
+{
+if(rear==(SIZE-1))
+{
+
+printf("overflow");
+return;
+}
+else
+{
+
+if(front==-1)
+{
+printf("underflow so front will be modified");
+front=front+1;
+}
+rear=rear+1;
+dequeue[rear]=value;
+
+}
+}
+
+/deletion at front/
+void deletefront() /function definition/
+
+{
+int value;
+if(front==-1)
+{
+printf("queue is already empty");
+
+value=-1;
+}
+else
+{
+value=dequeue[front];
+
+if(front==rear)
+{
+printf("queue contains only one item");
+rear=-1;
+front=-1;
+}
+else
+
+front=front+1;
+}
+printf("removed element from front is %d",value);
+}
+
+/insertion at front/
+void insertfront(int value) /function definition/
+{
+if(front==0)
+
+{
+printf("front is at the beginning");
+printf("here insertion is not possible");
+return;
+}
+
+else
+{
+if(front==-1)
+{
+printf("queue is empty so both pointers will modified");
+
+front=front+1;
+rear=rear+1;
+
+}
+else
+{
+
+front=front-1;
+}
+dequeue[front]=value;
+}
+}
+
+/deletion at rear/
+void deleterear() /function definition/
+{
+
+int value;
+if(front==-1)
+{
+
+printf("queue is already empty");
+return;
+}
+else
+{
+
+value=dequeue[rear];
+if(rear==front)
+{
+printf("queue contains only one item");
+printf("rear and front will be modified");
+
+rear=-1;
+front=-1;
+}
+else
+{
+
+rear=rear-1;
+}
+}
+printf("\n the removed element from rear is:%d",value);
+}
+
+/traverse operation/
+void traverse() /function definition/
+
+{
+int i;
+if(front==-1)
+{
+printf("queue empty");
+return;
+
+}
+else
+{
+
+printf("\n value in the queue are as follow:");
+for(i=front;i<=rear;i++)
+printf("\n%d",dequeue[i]);
+}
+}
+PRIORITY QUEUE PROGRAM
+#include<stdio.h>
+int n;
+int array_insert(int *a,int i,int x){
+   n++;
+    for(int j=n-1;j>i;j--){
+        (a+j)=(a+j-1);
+    }
+    *(a+i)=x;
+}
+int enqueue(int* a,int x){
+    int i=0;
+    
+    printf("\n");
+    while((i<n)&&(x>=*(a+i))){
+        i++;
+    }
+    array_insert(a,i,x);
+}
+int dequeue(int* a)
+{
+    int x;
+    x=*(a+0);
+    for(int i=0;i<n;i++)
+    {
+        (a+i) = (a+i+1);
+    }
+    n--;
+    return x;
+
+}
+
+int main(){
+    int x;
+    int a[100]={1,3,5,7,10,15};
+    n=6;
+    enqueue(a,4);
+    enqueue(a,6);
+    enqueue(a,2);
+    enqueue(a,3);
+    enqueue(a,8);
+    int del=dequeue(a);
+
+
+    for(int i=0;i<n;i++){
+        printf("%d ",*(a+i));
+    }
+
+    return 0;
+}
+
+
+
+FUNCTIONS QUEUE
+
+#include <stdio.h>
+#include <stdlib.h>
+#define MaxQUEUE 3
+#define TRUE 1
+#define FALSE 0
+struct Queue
+{
+ int items[MaxQUEUE];
+ int rare;
+ int front;
+};
+//struct Queue Q;
+void Initialize(struct Queue *Q)
+{
+    Q->rare = -1;
+    Q->front = 0;
+}
+int IsEmpty(struct Queue *Q) 
+{
+if (Q->rare - Q->front + 1 == 0)
+return TRUE;
+else
+return FALSE;
+}
+
+ int EnQUEUE (struct Queue *Q , int x)
+{
+    if( Q->rare == MaxQUEUE-1 )
+    {
+        printf("Queue overflows");
+        exit(1);
+    }
+    Q->rare = Q->rare + 1;
+    Q->items[Q->rare]=x;
+
+}
+int DeQUEUE(struct Queue *Q)
+{
+    int x;
+     if (IsEmpty(*&Q))
+     {
+        printf("Queue underflows");
+        exit(1);
+     }
+     x = Q->items[Q->front];
+     Q->front = Q->front + 1;
+     return x;
+      
+}
+
+int main()
+{
+  struct Queue Q;
+  Initialize(&Q);
+  //EnQUEUE(&Q,k);
+  EnQUEUE(&Q,200);
+  EnQUEUE(&Q,300);
+  EnQUEUE(&Q,400);
+  
+  int x = DeQUEUE(&Q);
+  int y = DeQUEUE(&Q);
+  int z = DeQUEUE(&Q);
+  /*int i = DeQUEUE();
+  int j = DeQUEUE();
+  int k = DeQUEUE();
+  */
+  printf("%d\n",x);
+  printf("%d\n",y);
+  printf("%d\n",z);
+ /* printf("%d\n",i);
+  printf("%d\n",j);
+  printf("%d\n",k);
+  */
+  int k;
+  scanf("%d",&k);
+  int u ;
+  scanf("%d" , &u);
+  if(u == 1)
+  {
+    EnQUEUE(&Q,k);
+  }
+  else
+  {
+    DeQUEUE(&Q);
+  }
+  return 0;
+} 
+
+
+CIRCULAR QUEUE
+
+#include <stdio.h>
+#include <stdlib.h>
+#define MaxQUEUE 4
+#define TRUE 1
+#define FALSE 0
+struct Queue 
+{
+    int items[MaxQUEUE];
+    int front;
+    int rear;
+};
+void Initialize(struct Queue *cQ)
+{
+    cQ->front = MaxQUEUE  ;
+    cQ->rear = MaxQUEUE ;
+
+}
+int IsEmpty(struct Queue *cQ)
+{
+   if(cQ->rear== cQ->front)
+   return TRUE;
+   else 
+   return FALSE;
+}
+int EnQUEUE(struct Queue *cQ,int x){
+if((cQ->rear + 1) % MaxQUEUE == cQ->front)
+{
+printf("queue overflows");
+exit(1);
+}
+else
+{
+    cQ->rear = (cQ->rear + 1)% MaxQUEUE;
+    cQ->items[cQ->rear] = x;
+}
+}
+int DeQUEUE(struct Queue *cQ)
+{
+    int x;
+    if(IsEmpty(*&cQ))
+    {
+    printf("queue underflow");
+    exit(1);
+    }
+    else
+    {
+        cQ->front = (cQ->front + 1) % MaxQUEUE;
+        x = cQ->items[cQ->front];
+        return x;
+    }
+}
+
+int main()
+{
+struct Queue cQ;
+Initialize(&cQ);
+EnQUEUE(&cQ,200);
+EnQUEUE(&cQ,300);
+EnQUEUE(&cQ,400);
+EnQUEUE(&cQ,500);
+int x = DeQUEUE(&cQ);
+int y = DeQUEUE(&cQ);
+int m= IsEmpty(&cQ);
+printf("%d",m);
+int z = DeQUEUE(&cQ);
+int t = DeQUEUE(&cQ);
+printf("%d\n",x);
+printf("%d\n",y);
+printf("%d\n",z);
+printf("%d\n",t);
+int k = IsEmpty(&cQ);
+printf("%d",k);
+return 0;
+}
